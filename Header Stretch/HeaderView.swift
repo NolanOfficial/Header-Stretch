@@ -10,10 +10,21 @@ import UIKit
 
 class HeaderView: UICollectionReusableView {
  
+    let imageView: UIImageView = {
+        let iv = UIImageView(image: #imageLiteral(resourceName: "real-estate-iphone-app-template-cover"))
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .red
+        addSubview(imageView)
+        imageView.fillSuperview()
+        
+        
         
     }
     
