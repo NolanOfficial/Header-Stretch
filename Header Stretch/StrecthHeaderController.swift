@@ -40,9 +40,24 @@ class StrecthHeaderController: UICollectionViewController, UICollectionViewDeleg
         }
     }
     
+   override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = scrollView.contentOffset.y
+        print(contentOffsetY)
+    
+    if contentOffsetY > 0 {
+        headerView?.animator.fractionComplete = 0
+        return
+    }
+    
+    headerView?.animator.fractionComplete = abs(contentOffsetY)/100
+    
+    }
+    
+    var headerView: HeaderView?
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath)
-        return header
+         headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as? HeaderView
+        return headerView!
     }
     
     
